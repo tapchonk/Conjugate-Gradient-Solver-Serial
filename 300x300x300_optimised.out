@@ -1,0 +1,64 @@
+===== ENVIRONMENT =====
+Architecture:        x86_64
+CPU op-mode(s):      32-bit, 64-bit
+Byte Order:          Little Endian
+CPU(s):              4
+On-line CPU(s) list: 0-3
+Thread(s) per core:  1
+Core(s) per socket:  4
+Socket(s):           1
+NUMA node(s):        1
+Vendor ID:           GenuineIntel
+CPU family:          6
+Model:               94
+Model name:          Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz
+Stepping:            3
+CPU MHz:             3200.000
+CPU max MHz:         3600.0000
+CPU min MHz:         800.0000
+BogoMIPS:            6384.00
+L1d cache:           32K
+L1i cache:           32K
+L2 cache:            256K
+L3 cache:            6144K
+NUMA node0 CPU(s):   0-3
+Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp md_clear flush_l1d arch_capabilities
+
+===== COMPILING Makefile IN /dcs/21/u2145461/cs257/cw =====
+gcc -c -O0 -fopenmp -mavx2 -Wall -Wextra -Werror main.c -o build/main.o
+gcc -c -O0 -fopenmp -mavx2 -Wall -Wextra -Werror generate_matrix.c -o build/generate_matrix.o
+gcc -c -O0 -fopenmp -mavx2 -Wall -Wextra -Werror conjugateGradient.c -o build/conjugateGradient.o
+gcc -c -O0 -fopenmp -mavx2 -Wall -Wextra -Werror sparsemv.c -o build/sparsemv.o
+gcc -c -O0 -fopenmp -mavx2 -Wall -Wextra -Werror waxpby.c -o build/waxpby.o
+gcc -c -O0 -fopenmp -mavx2 -Wall -Wextra -Werror ddot.c -o build/ddot.o
+gcc -c -O0 -fopenmp -mavx2 -Wall -Wextra -Werror compute_residual.c -o build/compute_residual.o
+gcc -c -O0 -fopenmp -mavx2 -Wall -Wextra -Werror mytimer.c -o build/mytimer.o
+gcc ./build/main.o ./build/generate_matrix.o ./build/conjugateGradient.o ./build/sparsemv.o ./build/waxpby.o ./build/ddot.o ./build/compute_residual.o ./build/mytimer.o -O0 -fopenmp -mavx2 -Wall -Wextra -Werror -lm -o acacgs
+
+===== RUNNING ./acacgs 300 300 300 =====
+
+===== Final Statistics =====
+Executable name:      /dcs/21/u2145461/cs257/cw/./acacgs
+Dimensions:           300 300 300
+Number of iterations: 149
+Final residual:       2.026515e-17
+
+=== Time ==
+Total:           44.655825 seconds
+ddot Kernel:     1.799902 seconds
+waxpby Kernel:   5.343471 seconds
+sparsemv Kernel: 37.511252 seconds
+
+=== FLOP ==
+Total:           2.574720e+11 floating point operations
+ddot Kernel:     1.609200e+10 floating point operations
+waxpby Kernel:   2.413800e+10 floating point operations
+sparsemv Kernel: 2.172420e+11 floating point operations
+
+=== MFLOP/s ==
+Total:           5.765698e+03 MFLOP/s
+ddot Kernel:     8.940485e+03 MFLOP/s
+waxpby Kernel:   4.517288e+03 MFLOP/s
+sparsemv Kernel: 5.791382e+03 MFLOP/s
+
+Difference between computed and exact = 1.311302e-06 
